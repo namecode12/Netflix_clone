@@ -2,11 +2,16 @@ import React from "react";
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 68px;
     display: flex;
     padding: 13px 58px;
     box-sizing:border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index:100;
 `;
 const Logo = styled.img`
     height: 35px;
@@ -29,9 +34,18 @@ const NavTextItem = styled.li`
         font-weight:normal;
         color: #b3b3b3;
     }
+    color: #e5e5e5;
+  &:hover {
+    color: #b3b3b3;
+  }
+  &.select {
+    color: white;
+    font-weight: bold;
+  } 
 `;
 const NavIcon = styled.ul`
     display: flex;
+    list-style:none;
 `;
 const NavIconItem = styled.li`
     width: fit-content;
@@ -45,7 +59,7 @@ const Banner = props => {
     return(<Wrapper>
         <Logo src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/128px-Netflix_2015_logo.svg.png"/>
         <NavText>
-            <NavTextItem>홈</NavTextItem>
+            <NavTextItem className="select">홈</NavTextItem>
             <NavTextItem>TV 프로그램</NavTextItem>
             <NavTextItem>최신 등록 콘텐츠</NavTextItem>
             <NavTextItem>내가 지정한 콘텐츠</NavTextItem>
@@ -54,6 +68,7 @@ const Banner = props => {
             <NavIconItem><img src="/search.svg"></img></NavIconItem>
             <NavIconItem><img src="/gift.svg"></img></NavIconItem>
             <NavIconItem><img src="/bell.svg"></img></NavIconItem>
+            
         </NavIcon>
     </Wrapper>)
 }
