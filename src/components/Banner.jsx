@@ -25,6 +25,10 @@ const NavTextItem = styled.li`
     margin-left: 8px;
     font-size: 12px; 
     align-items: center;
+    &:hover{
+        font-weight:normal;
+        color: #b3b3b3;
+    }
 `;
 const NavIcon = styled.ul`
     display: flex;
@@ -33,8 +37,8 @@ const NavIconItem = styled.li`
     width: fit-content;
     margin-right:36px;
     &> img{
-        width: 36px;
-        height: 36px;
+        width: 18px;
+        height: 18px;
     }
 `;
 const Banner = props => {
