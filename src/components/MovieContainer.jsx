@@ -7,7 +7,7 @@ const BtnSize = "45px";
 const Wrapper = styled.div`
   color: white;
   margin: 0 auto;
-
+  
   width: calc(100% - (${BtnSize} + ${BtnSize}));
   overflow:visible;
   div.title {
@@ -17,6 +17,8 @@ const Wrapper = styled.div`
     position: relative;
   }
   div.slider {
+      transform: ${props => `translateX(-${props.translate}px);`} ;
+      transition: 0.3s;
       display: -webkit-box;
   }
 `;
@@ -31,7 +33,8 @@ const BtnLeft = styled.button`
     border:none;
     color: white;
     outline: none;
-    
+    cursor: pointer;
+
     &:hover{
         opacity:1;
         background-color:rgba(0,0,0,0.5);
@@ -45,16 +48,33 @@ const BtnRight = styled(BtnLeft)`
 `
 
 const MovieContainer = props => {
+    const [page,setPage] = React.useState(1);
+    const [sliderwidth,setSliderWidth] = React.useState(0);
+    const slider = React.useRef(undefined);
+    
+    React.useEffect(() => {
+        setSliderWidth(slider.current.offsetWidth);
+    },[])
+
+    const onClickleft = () =>{
+        if(page>1)
+            setPage(page - 1);
+        console.log(page);
+    };
+    const onClcikRight = () => {
+        setPage(page + 1);
+        console.log(page);
+    }
     return(
   
-    <Wrapper>
+    <Wrapper translate={(page - 1) * (sliderwidth + 10)}>
         <div className="title">TV 프로그램 * 코미디</div>
         <div className="container">
-            <BtnLeft>{"<"}</BtnLeft>
-            <BtnRight>></BtnRight>
-            <div className="slider">
-                {[...Array(15).keys()].map(value => (
-                    <Movieitem/>
+            <BtnLeft onClick={onClickleft}>{"<"}</BtnLeft>
+            <BtnRight onClick={onClcikRight}>></BtnRight>
+            <div className="slider" ref = {slider}>
+                {props.movies.map(value => (
+                    <Movieitem title={value}/>
                 ))}
             </div>
         </div>

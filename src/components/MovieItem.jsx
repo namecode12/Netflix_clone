@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 20%;
+  width: calc(20% - 8px);
   padding-bottom:10%;
   height:0;
   position:relative;
+  margin-right:10px;
   & > div{
     position:absolute;
     left:0;
@@ -23,7 +24,7 @@ const Wrapper = styled.div`
 const Movieitem = props => {
   return (
     <Wrapper>
-      <div>movieitem</div>
+      <div>{props.title}</div>
     </Wrapper>
   );
 };
