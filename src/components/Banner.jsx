@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import {Link} from  "react-router-dom"
 const Wrapper = styled.div`
   width: 100%;
   height: 68px;
@@ -18,7 +18,16 @@ const Logo = styled.img`
   height: 100%;
   margin-right: 30px;
 `;
+const setFont = (event) => {
+  let asd = document.getElementsByClassName('asd')
+  for (let a = 0; a < asd.length; a++) {
+    asd[a].style.fontWeight = 'normal'
+    asd[a].style.color = '#e5e5e5'
+  }
+  event.target.style.fontWeight = 'bold'
+  event.target.style.color = '#fff'
 
+}
 const NavText = styled.ul`
   display: flex;
   color: white;
@@ -32,12 +41,10 @@ const NavTextItem = styled.li`
   margin-right: 20px;
   color: #e5e5e5;
   &:hover {
+    font-weight:normal;
     color: #b3b3b3;
   }
-  &.select {
-    color: white;
-    font-weight: bold;
-  }
+  
 `;
 
 const NavIcon = styled.ul`
@@ -59,11 +66,10 @@ const Banner = props => {
     <Wrapper>
       <Logo src="https://cdn.pixelprivacy.com/wp-content/uploads/2017/12/Netflix-Logo-1024x277.png" />
       <NavText>
-        <NavTextItem className="select">홈</NavTextItem>
-        <NavTextItem>TV 프로그램</NavTextItem>
-        <NavTextItem>영화</NavTextItem>
-        <NavTextItem>최신 등록 콘텐츠</NavTextItem>
-        <NavTextItem>내가 찜한 콘텐츠</NavTextItem>
+        <NavTextItem className='asd' onClick={setFont}><Link>홈</Link></NavTextItem>
+        <NavTextItem className='asd' onClick={setFont}><Link>TV 프로그램</Link></NavTextItem>
+        <NavTextItem className='asd' onClick={setFont}><Link>최신 등록 콘텐츠</Link></NavTextItem>
+        <NavTextItem className='asd' onClick={setFont}><Link>내가 찜한 콘텐츠</Link></NavTextItem>
       </NavText>
       <NavIcon>
         <NavIconItem>

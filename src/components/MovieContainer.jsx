@@ -48,38 +48,39 @@ const BtnRight = styled(BtnLeft)`
 `
 
 const MovieContainer = props => {
-    const [page,setPage] = React.useState(1);
-    const [sliderwidth,setSliderWidth] = React.useState(0);
+    const [page, setPage] = React.useState(1);
+    const [sliderwidth, setSliderWidth] = React.useState(0);
     const slider = React.useRef(undefined);
-    
+
     React.useEffect(() => {
         setSliderWidth(slider.current.offsetWidth);
-    },[])
+    }, [])
 
-    const onClickleft = () =>{
-        if(page>1)
+    const onClickleft = () => {
+        if (page > 1)
             setPage(page - 1);
         console.log(page);
     };
     const onClcikRight = () => {
-        setPage(page + 1);
+        if (page < props.movies.length / 5)
+            setPage(page + 1);
         console.log(page);
     }
-    return(
-  
-    <Wrapper translate={(page - 1) * (sliderwidth + 10)}>
-        <div className="title">TV 프로그램 * 코미디</div>
-        <div className="container">
-            <BtnLeft onClick={onClickleft}>{"<"}</BtnLeft>
-            <BtnRight onClick={onClcikRight}>></BtnRight>
-            <div className="slider" ref = {slider}>
-                {props.movies.map(value => (
-                    <Movieitem title={value}/>
-                ))}
+    return (
+
+        <Wrapper translate={(page - 1) * (sliderwidth + 10)}>
+            <div className="title">{props.title}</div>
+            <div className="container">
+                <BtnLeft onClick={onClickleft}>{"<"}</BtnLeft>
+                <BtnRight onClick={onClcikRight}>></BtnRight>
+                <div className="slider" ref={slider}>
+                    {(props.movies || []).map(value => (
+                        <Movieitem title={value} />
+                    ))}
+                </div>
             </div>
-        </div>
         </Wrapper>
-  );
+    );
 };
 
 export default MovieContainer;
